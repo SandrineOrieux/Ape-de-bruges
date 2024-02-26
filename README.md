@@ -1,0 +1,97 @@
+# APE de Bruges
+
+Ce projet est une application Symfony. C'est une refonte d'un site statique fait avec HTML/CSS/Bootstrap. Le but étant de créer un back et une base donnée de manière à ce que n'importe quel membre de l'association puisse modifier le contenu du site.
+
+## Installation
+
+### Prérequis
+
+Avant de commencer, assurez-vous d'avoir installé :
+- PHP (version 8.2.4)
+- Avoir définit php dans les variables d’environnement 
+- Composer
+- symfony CLI
+- npm
+- une base de données relationnelles (ex: mariaDB)
+- faire la commande symfony check:requirement et si besoin modifier le fichier php.ini
+
+### Étapes d'installation
+
+1. Clonez ce dépôt : `git clone https://github.com/SandrineOrieux/Ape-de-bruges.git`
+2. Rendez-vous dans le répertoire du projet : `cd Ape-de-bruges`
+3. Configurer le fichier .env pour la base de données
+4. Installez les dépendances via Composer : `composer install`
+5. Installez les dépendances via npm : `npm install`
+6. Eénérer les autoloads : `composer require symfony/runtime`
+7. Créez la base de données : `symfony console doctrine:database:create`
+8. Exécutez les migrations pour créer les tables : `synfony console doctrine:migrations:migrate`
+
+
+## Utilisation
+ - Lancez le serveur local : `symfony server:start` ou utilisez votre serveur web habituel.
+ - Lancez npm : `npm run build` (pour developpement)
+
+## Créer un admin
+- Créer un hash du password : `symfony console security:hash-password`
+ - Insérer dans la Bdd : `INSERT INTO `user` (`email`, `roles`, `password`, `first_name`, `last_name`) VALUES ('admin@test.com', '[\"ROLE_ADMIN\"]', '{le mot de pass hash}', 'Nom', 'Prenom');`
+
+
+## Contribuer
+
+Si vous souhaitez contribuer à ce projet, veuillez suivre ces étapes :
+1. Forker le projet
+2. Créer une nouvelle branche (`git checkout -b feature/nom-de-la-fonctionnalite`)
+3. Faire des modifications et commit (`git commit -am 'Ajouter une nouvelle fonctionnalité'`)
+4. Push vers la branche (`git push origin feature/nom-de-la-fonctionnalite`)
+5. Créer une Pull Request
+
+## Auteurs
+
+Orieux Sandrine.
+
+## Licence
+
+Pas de licence.
+
+## Documentations 
+
+- Composer :
+https://getcomposer.org/download/
+
+- Symfony CLI :
+https://symfony.com/download
+
+- Symfony :
+https://symfony.com/
+
+- Symfony webpack encore :
+https://symfony.com/doc/current/frontend/encore/installation.html
+
+- Symfony easyadmin :
+https://symfony.com/bundles/EasyAdminBundle/
+
+- UserCrudController pour le hash du mot de passe et confirmation :
+https://dev.to/nabbisen/symfony-6-and-easyadmin-4-hashing-password-3eec
+
+- Symfony vich uploader :
+https://github.com/dustin10/VichUploaderBundle/blob/master/docs/index.md
+
+- Icones du dashbord :
+https://fontawesome.com
+
+- Query builder :
+https://www.doctrine-project.org/projects/doctrine-orm/en/3.0/reference/query-builder.html
+
+- Requête ajax avec axios :
+https://axios-http.com/fr/docs/intro
+
+- Rédaction de la page politique de confidentialité et mentions légales :
+https://www.legalplace.fr/guides/politique-de-confidentialite-rgpd/
+https://www.legalplace.fr/guides/mentions-legales/
+
+
+
+
+
+
+
