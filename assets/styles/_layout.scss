@@ -1,0 +1,78 @@
+//navbar, grid, header, footer, section
+
+.navHand{
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 0.65fr 1fr;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    text-align: center;
+    
+    .home{
+        z-index: 1;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+    }
+    .events{
+        z-index: 1;
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+    }
+    .HandHome{
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+    }
+    .HandEvents{
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+    }
+    .hoverText{
+        &:hover + .hoverhand{
+            display :block;
+        }
+    }
+    .hoverhand{
+        display : none;
+    }
+}
+
+.navSummary{
+    width: 100%;
+}
+@media screen and (min-width: $mediumSize) {
+    .navSummary{
+        width: auto;
+    }
+}
+
+
+main{
+    margin-bottom: 180px;
+    .section{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        justify-items: center;
+        align-items: center;
+        .backGround{
+            grid-row: 1 / 3;
+            grid-column: 1 / 3;
+            z-index: 0;
+        }
+        .leftPage{
+            grid-row: 1 / 3;
+            grid-column: 1 / 2;
+            z-index: 1;
+        }
+        .rightPage{
+            grid-row: 1 / 3;
+            grid-column: 2 / 3;
+            z-index: 1;
+        }
+    }
+}
+
+footer{
+    min-height: 120px;
+}

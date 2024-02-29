@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/x-icon" href="{{asset('build/images/favicon.png')}}">
+		<title>
+			Ape de Bruges :
+			{% block title %}{% endblock %}
+		</title>
+		<meta name="description" content="Association des Parents d'Élèves - Ensemble, nous pouvons améliorer l'expérience scolaire de nos enfants !">
+		<meta name="keywords" content="association, parents, élèves, école, activités, événements, kermesse, marché de noël, marché aux fleurs">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+
+	</head>
+	<body>
+		{% include "./partials/_header.html.twig" %}
+		{% block body %}{% endblock %}
+		{% include "./partials/_footer.html.twig" %}
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+			{{ encore_entry_script_tags('app') }}
+
+		{% endblock %}
+	</body>
 </html>

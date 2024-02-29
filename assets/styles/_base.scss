@@ -1,0 +1,20 @@
+//typo, variables, class générale
+@use 'sass:color';
+//les typos
+$typoHandwritten : 'Dancing Script', cursive;
+$typoClassic : 'Oswald', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+//les medias
+$mediumSize : 768px;
+$largeSize : 992px;
+$xLarge : 1200px;
+$xxLarge : 1400px;
+
+//class générale
+.typoHand{
+    font-family: $typoHandwritten;
+}
+.typoClassic {
+    font-family: $typoClassic;
+}

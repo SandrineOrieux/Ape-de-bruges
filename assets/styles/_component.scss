@@ -1,0 +1,51 @@
+//images, buttons, flèches.
+.logo {
+    border-radius: 50%;
+    min-width: 60px;
+    max-width: 150px;
+    width: 20vw;
+
+}
+
+.hand {
+    width: 18vw;
+    max-width: 150px;
+    z-index: 0;
+}
+
+.arrowNavBar {
+    border: none;
+}
+
+
+.arrowUp {
+    bottom: 50%;
+    right: 1%;
+}
+
+@media screen and (min-width: $xLarge) {
+    .arrowUp {
+        right: auto;
+        left: 50%;
+        transform: translate(1800%);
+    }
+}
+
+@media screen and (min-width: $xxLarge) {
+    .arrowUp {
+        right: auto;
+        left: 50%;
+        transform: translate(2100%);
+    }
+}
+
+.legal {
+    font-size: 10px;
+}
+
+.contacts {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../images/handRHover.jpg);
+}
