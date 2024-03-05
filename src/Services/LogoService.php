@@ -19,14 +19,12 @@ class LogoService
 
     $Logo = $this->repos->findOneBy(['id' => 1]);
 
-
     return $Logo;
   }
   public function getFavicon(): Logo
   {
 
     $Logo = $this->repos->findOneBy(['id' => 2]);
-
 
     return $Logo;
   }

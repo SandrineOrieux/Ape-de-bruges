@@ -19,7 +19,6 @@ class BureauService
 
     $users = $this->repos->findBureau();
 
-    dump($users);
     return $users;
   }
 }
