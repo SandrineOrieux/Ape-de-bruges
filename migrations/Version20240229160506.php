@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+
+/**
+ * Auto-generated Migration: Please modify to your needs!
+ */
+final class Version20240229160506 extends AbstractMigration
+{
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function up(Schema $schema): void
+    {
+        // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE logo ADD image_name VARCHAR(255) DEFAULT NULL, ADD image_size INT DEFAULT NULL, ADD updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\'');
+        $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D64997C9BB74 FOREIGN KEY (ape_function_id) REFERENCES ape_function (id)');
+        $this->addSql('CREATE INDEX IDX_8D93D64997C9BB74 ON user (ape_function_id)');
+    }
+
+    public function down(Schema $schema): void
+    {
+        // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE logo DROP image_name, DROP image_size, DROP updated_at');
+        $this->addSql('ALTER TABLE user DROP FOREIGN KEY FK_8D93D64997C9BB74');
+        $this->addSql('DROP INDEX IDX_8D93D64997C9BB74 ON user');
+    }
+}

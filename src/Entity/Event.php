@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
+
 class Event
 {
     #[ORM\Id]
@@ -43,7 +44,7 @@ class Event
     #[ORM\Column]
     private ?bool $isInNews = null;
 
-    #[ORM\OneToMany(targetEntity: ImageEvent::class, mappedBy: 'event', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: ImageEvent::class, mappedBy: 'event', orphanRemoval: true, cascade: ["persist", "remove", "refresh"])]
     private Collection $image;
 
     public function __construct()

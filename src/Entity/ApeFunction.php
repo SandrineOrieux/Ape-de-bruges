@@ -25,6 +25,11 @@ class ApeFunction
     {
         $this->users = new ArrayCollection();
     }
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 
     public function getId(): ?int
     {

@@ -20,6 +20,11 @@ class Season
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $endYear = null;
 
+    public function __toString()
+    {
+        return 'Saison ' . $this->getStartYear()->format('Y') . ' - ' . $this->getEndYear()->format('Y');
+    }
+
     public function getId(): ?int
     {
         return $this->id;

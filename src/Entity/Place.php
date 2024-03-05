@@ -18,6 +18,10 @@ class Place
 
     #[ORM\Column(length: 255)]
     private ?string $address = null;
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     public function getId(): ?int
     {
