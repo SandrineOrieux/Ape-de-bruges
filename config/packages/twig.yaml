@@ -3,6 +3,8 @@ twig:
     globals:
         # the value is the service's id
         logo : '@App\Services\LogoService'
+        bureau : '@App\Services\BureauService'
+
 
 when@test:
     twig:
