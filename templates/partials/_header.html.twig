@@ -1,6 +1,6 @@
 <header id="up" class="container-xl w-auto d-flex flex-wrap justify-content-around justify-content-lg-evenly align-items-center column-gap-1 p-2 p-sm-4 bg-primary text-light typoClassic">
 	<img
-	src="{{asset('build/images/logo.jpg')}}" alt="Logo de l'association" class="d-none d-lg-block logo">
+	src="{{vich_uploader_asset(logo.getLogo, 'imageFile')}}" alt="Logo de l'association" class="d-none d-lg-block logo">
 	<!--pages navbar-->
 	<nav class="flex-grow-1 flex-md-grow-0 order-md-1">
 		<ul class="list-unstyled p-lg-3 navHand">
@@ -13,7 +13,7 @@
 			</li>
 		</ul>
 	</nav>
-	<a href="{{path('app_login')}}" class="m-md-2 m-lg-0 order-md-3"><img src="{{asset('build/images/logo.jpg')}}" alt="Logo de l'association" class=" logo"></a>
+	<a href="{{path('app_login')}}" class="m-md-2 m-lg-0 order-md-3"><img src="{{vich_uploader_asset(logo.getLogo, 'imageFile')}}" alt="Logo de l'association" class=" logo"></a>
 	<!--navigation menu on this page-->
 	<nav class="navbar navbar-expand-md bg-body-primary order-md-2 navSummary">
 		<div class="container-fluid justify-content-around">
