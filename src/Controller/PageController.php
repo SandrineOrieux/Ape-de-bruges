@@ -14,7 +14,7 @@ class PageController extends AbstractController
     {
         $articles = $articleRepository->findAll();
 
-        return $this->render('page/index.html.twig', [
+        return $this->render('pages/index.html.twig', [
             'articles' => $articles
         ]);
     }

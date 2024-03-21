@@ -74,7 +74,11 @@
 					class="row m-0 p-0">
 					<!--details-->
 					{% for info in infos.getInfos %}
-						<a class="col-4 m-0 p-0 text-light d-none d-md-block" href="{{info.url}}">{{info.description}}</a>
+						{% if info.url %}
+							<a class="col-4 m-0 p-0 text-light d-none d-md-block" href="{{info.url}}" target="_blank">{{info.description}}</a>
+						{% else %}
+							<p class="col-4 m-0 p-0 text-light d-none d-md-block" href="{{info.url}}" target="_blank">{{info.description}}</p>
+						{% endif %}
 					{% endfor %}
 				</div>
 			</div>
@@ -104,7 +108,7 @@
 	</div>
 	<!--legal notice-->
 	<p class="text-center legal m-0 p-0">© 2023 APE de Bruges-Capbis-Mifaget. SIRET 385 196 381 00011. Tous droits
-																																								      réservés.</p>
+																																																				      réservés.</p>
 </footer>
 
 <!--modal footer-->
@@ -122,7 +126,7 @@
 					<div class="row text-center my-3">
 						<p>{{info.name}}
 							:</p>
-						<a class="" href="{{info.url}}">
+						<a class="" href="{{info.url}}" target="_blank">
 							{{info.description}}</a>
 					</div>
 				{% endfor %}
