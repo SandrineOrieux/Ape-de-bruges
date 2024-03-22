@@ -21,6 +21,17 @@ class SeasonRepository extends ServiceEntityRepository
         parent::__construct($registry, Season::class);
     }
 
+    public function findActualSeason($today): Season|null
+    {
+
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.startYear < :date')
+            ->andWhere('s.endYear > :date')
+            ->setParameter('date', $today)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     //    /**
     //     * @return Season[] Returns an array of Season objects
     //     */

@@ -18,7 +18,6 @@ class InfoService
 
     $infos = $this->repos->findAll();
 
-    dump($infos);
     return $infos;
   }
 }
