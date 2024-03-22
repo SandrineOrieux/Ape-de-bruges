@@ -24,4 +24,10 @@ class PageController extends AbstractController
             'articles' => $articles
         ]);
     }
+
+    #[Route('/évènements', name: 'app_events')]
+    public function events(): Response
+    {
+        return $this->render('pages/events.html.twig', []);
+    }
 }

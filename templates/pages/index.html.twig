@@ -47,8 +47,8 @@
 			</section>
 
 			<section id="AG" class="col p-0 py-2 p-md-2 section">
-				<img src="./asset/img/carnet-table-horizontal.jpg" alt="cahier" class="w-100 d-none d-sm-block backGround">
-				<img src="./asset/img/carnet-table.jpg" alt="cahier" class="d-sm-none w-100 backGround">
+				<img src="{{asset('build/images/carnet-table-horizontal.jpg')}}" alt="cahier" class="w-100 d-none d-sm-block backGround">
+				<img src="{{asset('build/images/carnet-table.jpg')}}" alt="cahier" class="d-sm-none w-100 backGround">
 				<div class="leftPage d-flex flex-column justify-content-center align-items-center">
 					<h2 class="w-75 p-0 m-0 text-wrap text-center">Le compte rendu de l'A-G
 					</h2>
@@ -62,7 +62,7 @@
 
 			<!--articles-->
 			{% for article in articles %}
-				<section class="col p-0 py-2 p-md-2 section">
+				<section class="col p-0 py-2 p-md-2 section" id='article{{article.id}}'>
 					<img src="{{asset('build/images/carnet-table.jpg')}}" alt="cahier" class="w-100 backGround">
 					<div class="leftPage h-100 d-flex flex-column justify-content-around align-items-center">
 						<h2 class="w-75 m-0 lh-1 text-center">{{article.title}}</h2>
