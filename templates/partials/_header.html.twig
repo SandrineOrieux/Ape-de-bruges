@@ -101,23 +101,23 @@
 							<ul class="navbar-nav align-items-center flex-column">
 								{% for event in futurEvents %}
 									<li class="nav-item">
-										<a class="nav-link text-light fw-light fs-6" href="#event1">{{event.title}}</a>
+										<a class="nav-link text-light fw-light fs-6" href="#event{{event.id}}">{{event.title}}</a>
 									</li>
 								{% endfor %}
 							</ul>
 						</li>
 						<li class="nav-item ">
-							<a class="nav-link text-light" href="#">
-								Evènements passés :
+							<a class="nav-link text-light" href="#archives">
+								Archives
 							</a>
 							<!--
-																																			              <ul class="navbar-nav align-items-center flex-column ">
-																																			                <li class="nav-item"><a class="nav-link text-light fw-light fs-6" href="#foot">Coupe du monde</a></li>
-																																			                <li class="nav-item"><a class="nav-link text-light fw-light fs-6" href="#chess">Tournoi d'échec</a></li>
-																																			                <li class="nav-item"><a class="nav-link text-light fw-light fs-6" href="#flowers">Marché aux fleurs</a></li>
-																																			                <li class="nav-item"><a class="nav-link text-light fw-light fs-6"  href="#fair">kermesse</a></li>
-																																			              </ul>
-																																			            -->
+																																																								              <ul class="navbar-nav align-items-center flex-column ">
+																																																								                <li class="nav-item"><a class="nav-link text-light fw-light fs-6" href="#foot">Coupe du monde</a></li>
+																																																								                <li class="nav-item"><a class="nav-link text-light fw-light fs-6" href="#chess">Tournoi d'échec</a></li>
+																																																								                <li class="nav-item"><a class="nav-link text-light fw-light fs-6" href="#flowers">Marché aux fleurs</a></li>
+																																																								                <li class="nav-item"><a class="nav-link text-light fw-light fs-6"  href="#fair">kermesse</a></li>
+																																																								              </ul>
+																																																								            -->
 						</li>
 					</ul>
 				</div>

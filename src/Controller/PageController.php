@@ -30,13 +30,19 @@ class PageController extends AbstractController
 
         $today = date('Y-m-d H:i:s');
 
-        $futurEvent = $eventRepository->findFutureEvents($today);
+        $actualseason = $seasonRepository->findActualSeason($today);
+
+        $futurEvents = $eventRepository->findFutureEvents($today);
+
+        $pastEvents = $eventRepository->findPastEvents($today, $actualseason->getStartYear());
+
 
         $actualseason = $seasonRepository->findActualSeason($today);
 
         return $this->render('pages/events.html.twig', [
-            'futurEvents' => $futurEvent,
-            'season' => $actualseason
+            'futurEvents' => $futurEvents,
+            'season' => $actualseason,
+            'pastEvents' => $pastEvents
         ]);
     }
 }

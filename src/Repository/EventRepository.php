@@ -37,6 +37,18 @@ class EventRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function findPastEvents($today, $seasonStart): array
+    {
+
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.start < :date')
+            ->andWhere('e.start > :season')
+            ->setParameter('date', $today)
+            ->setParameter('season', $seasonStart)
+            ->orderBy('e.start', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
     //    public function findOneBySomeField($value): ?Event
     //    {
