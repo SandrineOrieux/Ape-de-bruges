@@ -1,0 +1,4 @@
+<h2 class="col-md-12 text-center typoClassic text-black py-3 m-0">{{season}}, Evènements passés :</h2>
+{% for event in pastEvents %}
+	{% include "/partials/events/_eventNotebook.html.twig" %}
+{% endfor %}

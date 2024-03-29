@@ -5,62 +5,13 @@
 
 {% block body %}
 
-
 	<main class="container-xl text-primary typoHand">
 		<div class="row row-cols-1 row-cols-md-2">
 			<h1 class="col-md-12 text-center typoClassic text-black py-3 m-0">
-				{{season}},
-																																																																																																				Evènements à venir :
+				{{season}}, Evènements à venir :
 			</h1>
 			{% for event in futurEvents %}
-				<section itemscope itemtype="http://schema.org/Event" id="event{{event.id}}" class="col p-0 py-2 p-md-2 section">
-					<img src="{{asset('build/images/carnet-table.jpg')}}" alt="cahier" class="m-0 p-0 w-100 backGround"/>
-					<div class="leftPage h-100 d-flex flex-column justify-content-around align-items-center pb-1">
-						<h2 itemprop="name" class="w-75 m-0 lh-1 text-center">{{event.title}}</h2>
-						<img itemprop="image" src="{{vich_uploader_asset(event.image|first, 'imageFile')}}" alt="affiche {{event.title}} " class="d-none d-sm-block w-75 "/>
-					</div>
-
-					<div class="rightPage w-75 h-100 d-flex flex-column justify-content-center align-items-center">
-						<ul class="list-unstyled lh-sm typoClassic text-center">
-							<li itemprop="startDate" content="{{event.start|date("Y-m-d H:i")}}">Le
-								{{event.start|date("d/m/Y")}}</li>
-							<li>à partir de
-								{{event.start|date("H")}}H</li>
-							<span itemprop="location" itemscope itemtype="http://schema.org/Place">
-								<li itemprop="name">lieu :
-									{{event.place}}</li>
-							</span>
-							<li>{{event.slogan}}</li>
-						</ul>
-
-						<button type="button" class="d-none d-sm-block btn btn-primary rounded-pill p-0 px-sm-3 lh-sm" data-bs-toggle="modal" data-bs-target="#modalEvent1">En savoir plus</button>
-						<a class=" d-sm-none" href="#modalEvent1" data-bs-toggle="modal">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16">
-								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-								<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
-							</svg>
-						</a>
-					</div>
-				</section>
-				<!--Modal event 1-->
-				<div class="modal fade text-primary" id="modalEvent1" tabindex="-1" aria-labelledby="modalEvent1Label" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h1 class="modal-title fs-5 typoHand" id="modalEvent1Label">{{event.title}}</h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body d-flex flex-column align-items-center text-black typoClassic gap-3">
-								<img itemprop="image" src="{{vich_uploader_asset(event.image|first, 'imageFile')}}" alt="affiche {{event.title}}" class="w-75"/>
-								<div>{{event.description|raw}}
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary rounded-pill p-0 px-4" data-bs-dismiss="modal" aria-label="Close">Quitter</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				{% include "/partials/events/_eventNotebook.html.twig" %}
 			{% endfor %}
 
 
@@ -68,7 +19,7 @@
 
 		<div class="row row-cols-1 row-cols-md-2" id="archives">
 			<div class="col-md-12 text-center">
-				<button type="button" class="btn btn-primary rounded-pill p-0 px-sm-3 lh-sm js-pastEvent-button">{{season}}
+				<button type="button" class="btn btn-primary rounded-pill p-0 px-sm-3 lh-sm js-pastEvent-button" href="{{path('app_eventsPast')}}">{{season}}
 					voir les évènements passés</button>
 				<button type="button" class="btn btn-primary rounded-pill p-0 px-sm-3 lh-sm js-pastEvent-button">
 					saison précédentes</button>
@@ -76,60 +27,7 @@
 
 
 		</div>
-		<div class="d-none row row-cols-1 row-cols-md-2 js-pastEvent-content">
-			<h2 class="col-md-12 text-center typoClassic text-black py-3 m-0">{{season}}, Evènements passés :</h2>
-			{% for event in pastEvents %}
-				<section itemscope itemtype="http://schema.org/Event" id="event1" class="col p-0 py-2 p-md-2 section">
-					<img src="{{asset('build/images/carnet-table.jpg')}}" alt="cahier" class="m-0 p-0 w-100 backGround"/>
-					<div class="leftPage h-100 d-flex flex-column justify-content-around align-items-center pb-1">
-						<h2 itemprop="name" class="w-75 m-0 lh-1 text-center">{{event.title}}</h2>
-						<img itemprop="image" src="{{vich_uploader_asset(event.image|first, 'imageFile')}}" alt="affiche {{event.title}} " class="d-none d-sm-block w-75 "/>
-					</div>
-
-					<div class="rightPage w-75 h-100 d-flex flex-column justify-content-center align-items-center">
-						<ul class="list-unstyled lh-sm typoClassic text-center">
-							<li itemprop="startDate" content="{{event.start|date("Y-m-d H:i")}}">Le
-								{{event.start|date("d/m/Y")}}</li>
-							<li>à partir de
-								{{event.start|date("H")}}H</li>
-							<span itemprop="location" itemscope itemtype="http://schema.org/Place">
-								<li itemprop="name">lieu :
-									{{event.place}}</li>
-							</span>
-							<li>{{event.slogan}}</li>
-						</ul>
-
-						<button type="button" class="d-none d-sm-block btn btn-primary rounded-pill p-0 px-sm-3 lh-sm" data-bs-toggle="modal" data-bs-target="#modalEvent1">En savoir plus</button>
-						<a class=" d-sm-none" href="#modalEvent1" data-bs-toggle="modal">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16">
-								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-								<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
-							</svg>
-						</a>
-					</div>
-				</section>
-				<!--Modal event 1-->
-				<div class="modal fade text-primary" id="modalEvent1" tabindex="-1" aria-labelledby="modalEvent1Label" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h1 class="modal-title fs-5 typoHand" id="modalEvent1Label">{{event.title}}</h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body d-flex flex-column align-items-center text-black typoClassic gap-3">
-								<img itemprop="image" src="{{vich_uploader_asset(event.image|first, 'imageFile')}}" alt="affiche {{event.title}}" class="w-75"/>
-								<div>{{event.description|raw}}
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary rounded-pill p-0 px-4" data-bs-dismiss="modal" aria-label="Close">Quitter</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-
-		</div>
+		<div class="d-none row row-cols-1 row-cols-md-2 js-pastEvent-content"></div>
 
 		<!--arrow Bootstrap Icons top page-->
 		<a href="#up" class="position-fixed z-3 arrowUp">
