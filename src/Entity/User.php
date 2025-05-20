@@ -30,13 +30,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     /**
+     * @var string The plain password
+     */
+    #[Assert\NotBlank(message: 'Le mot de passe est requis.')]
+    #[Assert\Regex(
+    pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/",
+    message: 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.'
+    )]
+    #[Assert\NotCompromisedPassword(message: 'Ce mot de passe est compromis.')]
+    private ?string $plainPassword = null;
+
+
+    /**
      * @var string The hashed password
      */
     #[Assert\Regex(
-        pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!\"#$%&'()*+,-./:;<=>?@[\\]^_{|}~])[A-Za-z\d!\"#$%&'()*+,-./:;<=>?@[\\]^_{|}~]{8,}$",
+        pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/",
         match: true,
-        message: 'votre mot de passe doit contenir au moins 8 caractères dont une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial',
-    )]
+        message: 'Votre mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.',
+    )]    
     #[ORM\Column]
     private ?string $password = null;
 
@@ -160,4 +172,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }   
 }

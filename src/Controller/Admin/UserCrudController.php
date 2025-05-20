@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\{AssociationField, ChoiceField, DateFi
 use Symfony\Component\Form\Extension\Core\Type\{PasswordType, RepeatedType};
 use Symfony\Component\Form\{FormBuilderInterface, FormEvent, FormEvents};
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -46,17 +47,37 @@ class UserCrudController extends AbstractCrudController
                 ->renderExpanded(),
         ];
 
-        $password = TextField::new('password')
-            ->setFormType(RepeatedType::class)
-            ->setFormTypeOptions([
-                'type' => PasswordType::class,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer votre mot de passe'],
-                'mapped' => false,
-            ])
-            ->setRequired($pageName === Crud::PAGE_NEW)
-            ->onlyOnForms();
-        $fields[] = $password;
+        $passwordField = TextField::new('plainPassword')
+        ->setFormType(RepeatedType::class)
+        ->setFormTypeOptions([
+            'type' => PasswordType::class,
+            'first_options' => [
+                'label' => 'Mot de passe',
+                'attr' => ['class' => 'password-field'],
+                'constraints' =>[
+                    new Assert\NotBlank(['message' => 'Le mot de passe est requis.']),
+                    new Assert\Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/',
+                        'message' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.',
+                    ]),
+                ],
+            ],
+            'second_options' => [
+                'label' => 'Confirmez le mot de passe', 
+                'attr' => ['class' => 'password-field'],
+                'constraints' =>[
+                    new Assert\NotBlank(['message' => 'Le mot de passe est requis.']),
+                    new Assert\Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/',
+                        'message' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.',
+                ]),
+            ]],
+            'mapped' => false,
+            'required' => $pageName === Crud::PAGE_NEW,
+        ])
+        ->onlyOnForms();
+
+        $fields[] = $passwordField;
 
         return $fields;
     }
@@ -80,18 +101,20 @@ class UserCrudController extends AbstractCrudController
 
     private function hashPassword()
     {
-        return function ($event) {
+        return function (FormEvent $event) {
             $form = $event->getForm();
             if (!$form->isValid()) {
                 return;
             }
-            $password = $form->get('password')->getData();
-            if ($password === null) {
+            $plainPassword = $form->get('plainPassword')->getData();
+            if (empty($plainPassword)) {
                 return;
             }
 
-            $hash = $this->userPasswordHasher->hashPassword($this->getUser(), $password);
-            $form->getData()->setPassword($hash);
+            /** @var User $user */
+            $user = $form->getData();
+            $hashedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
+            $user->setPassword($hashedPassword);
         };
     }
 }
