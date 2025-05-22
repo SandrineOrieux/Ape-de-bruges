@@ -1,0 +1,12 @@
+{# templates/admin/crud/index.html.twig #}
+{% extends '@EasyAdmin/crud/index.html.twig' %}
+
+{% block content %}
+    <div>
+      <div class="h5 mt-3">
+        Seul le premier fichier avec le nom commençant par logo sera affiché, idem pour le favicon (petit icone sur l'onglet du navigateur).
+      </div>
+
+      {{ parent() }}
+    </div>
+{% endblock %}

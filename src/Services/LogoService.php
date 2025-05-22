@@ -17,14 +17,14 @@ class LogoService
   public function getLogo(): Logo
   {
 
-    $Logo = $this->repos->findOneBy(['id' => 1]);
+    $Logo = $this->repos->findOneByFieldStartingWith('imageName', 'logo');
 
     return $Logo;
   }
   public function getFavicon(): Logo
   {
 
-    $Logo = $this->repos->findOneBy(['id' => 2]);
+     $Logo = $this->repos->findOneByFieldStartingWith('imageName', 'favicon');
 
     return $Logo;
   }

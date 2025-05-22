@@ -45,4 +45,21 @@ class LogoRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function findOneByFieldStartingWith(string $field, string $prefix): ?Logo
+    {
+        $qb = $this->createQueryBuilder('e');
+
+        // Protection minimale contre les injections (on évite d'injecter directement le champ)
+        if (!property_exists( $this->getEntityName(), $field)) {
+            throw new \InvalidArgumentException("Invalid field: " . $field);
+            }
+
+        return $qb
+            ->where("e.$field LIKE :prefix")
+            ->setParameter('prefix', strtolower($prefix) . '%')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 }
