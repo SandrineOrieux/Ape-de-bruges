@@ -13,12 +13,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class EventCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
         return Event::class;
+    }
+
+        public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->overrideTemplate('crud/index', 'admin/_messages/news.html.twig');
     }
 
 

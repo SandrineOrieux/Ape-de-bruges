@@ -18,30 +18,9 @@
 				</div>
 
 				<div class="rightPage h-100 ps-3 d-flex flex-column justify-content-evenly align-items-center">
-
-					<p class="m-0 lh-1 text-center typoClassic  ps-3 pe-1">Marché de Noël
-					</p>
-					<button type="button" class="d-none d-sm-block btn btn-primary rounded-pill p-0 px-sm-3 lh-sm">
-						<a href="events.html" class="text-light text-decoration-none">En savoir plus</a>
-					</button>
-					<a class="pb-3 d-sm-none" href="events.html">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16">
-							<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-							<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-						</svg>
-					</a>
-
-					<p class="m-0 lh-1 text-center typoClassic  ps-3 pe-1">Tournoi d'échecs
-					</p>
-					<button type="button" class="d-none d-sm-block btn btn-primary rounded-pill p-0 px-sm-3 lh-sm">
-						<a href="events.html" class="text-light text-decoration-none">En savoir plus</a>
-					</button>
-					<a class="pb-3 d-sm-none" href="events.html">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16">
-							<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-							<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-						</svg>
-					</a>
+					{% for new in news %}
+						{% include "/partials/news/_news.html.twig" %}
+					{% endfor %}
 				</div>
 
 			</section>
