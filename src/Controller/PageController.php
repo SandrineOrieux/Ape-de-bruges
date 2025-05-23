@@ -16,12 +16,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class PageController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ArticleRepository $articleRepository, AGRepository $aGRepository): Response
+    public function index(ArticleRepository $articleRepository, AGRepository $aGRepository, EventRepository $eventRepository): Response
     {
         $articles = $articleRepository->findAll();
 
+        $news = $eventRepository->findBy(["isInNews" => 1]);
+
         return $this->render('pages/index.html.twig', [
-            'articles' => $articles
+            'articles' => $articles,
+            'news' => $news
         ]);
     }
 
@@ -61,4 +64,5 @@ class PageController extends AbstractController
             ])
         ]);
     }
+    
 }

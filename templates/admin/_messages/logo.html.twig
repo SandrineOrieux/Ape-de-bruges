@@ -1,0 +1,5 @@
+{% extends 'admin/overrideCrud.html.twig' %}
+
+{% block message %}
+    Seul le premier fichier dont le nom commence par <strong>{{ ea.entity.name|lower }}</strong> sera chargé, idem pour le <strong>favicon</strong> (petit icône sur l'onglet du navigateur) !
+{% endblock %}

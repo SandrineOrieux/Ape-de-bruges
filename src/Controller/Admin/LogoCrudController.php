@@ -17,11 +17,10 @@ class LogoCrudController extends AbstractCrudController
     {
         return Logo::class;
     }
-
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-        ->overrideTemplate('crud/index', 'admin/logo/index.html.twig');
+            ->overrideTemplate('crud/index', 'admin/_messages/logo.html.twig');
     }
 
 

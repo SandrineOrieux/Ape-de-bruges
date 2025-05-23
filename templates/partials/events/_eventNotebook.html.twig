@@ -2,7 +2,7 @@
 	<img src="{{asset('build/images/carnet-table.jpg')}}" alt="cahier" class="m-0 p-0 w-100 backGround"/>
 	<div class="leftPage h-100 d-flex flex-column justify-content-around align-items-center pb-1">
 		<h2 itemprop="name" class="w-75 m-0 lh-1 text-center">{{event.title}}</h2>
-		<img itemprop="image" src="{{vich_uploader_asset(event.image|first, 'imageFile')}}" alt="affiche {{event.title}} " class="d-none d-sm-block w-75 "/>
+		{# <img itemprop="image" src="{{vich_uploader_asset(event.image|first, 'imageFile')}}" alt="affiche {{event.title}} " class="d-none d-sm-block w-75 "/> #}
 	</div>
 
 	<div class="rightPage w-75 h-100 d-flex flex-column justify-content-center align-items-center">
@@ -36,7 +36,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body d-flex flex-column align-items-center text-black typoClassic gap-3">
-				<img itemprop="image" src="{{vich_uploader_asset(event.image|first, 'imageFile')}}" alt="affiche {{event.title}}" class="w-75"/>
+				{# <img itemprop="image" src="{{vich_uploader_asset(event.image|first, 'imageFile')}}" alt="affiche {{event.title}}" class="w-75"/> #}
 				<div>{{event.description|raw}}
 				</div>
 			</div>
